@@ -11,7 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
-    ]);
+    ])
+    .copy('node_modules/toastr/build/toastr.css', 'public/css/toastr.css')
+    .copy('node_modules/toastr/build/toastr.min.js', 'public/js/toastr.js');

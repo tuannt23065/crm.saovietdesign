@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'Tài chính cá nhân',
+    'site_title' => 'Sao Việt Group',
 ];

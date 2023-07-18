@@ -81,4 +81,14 @@ class Task extends Model implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function isImage()
+    {
+        if ($this->attachment) {
+            $mimeType = $this->attachment->mime_type;
+            return str_starts_with($mimeType, 'image/');
+        }
+
+        return false;
+    }
 }

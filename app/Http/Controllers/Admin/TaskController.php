@@ -23,10 +23,10 @@ class TaskController extends Controller
     public function index()
     {
         abort_if(Gate::denies('task_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        $statuses = TaskStatus::all();
         $tasks = Task::with(['status', 'tags', 'assigned_to', 'media'])->get();
 
-        return view('admin.tasks.index', compact('tasks'));
+        return view('admin.tasks.index', compact('tasks', 'statuses'));
     }
 
     public function create()
@@ -125,5 +125,14 @@ class TaskController extends Controller
         $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    }
+
+    public function updateStatus(Request $request, Task $task)
+    {
+        abort_if(Gate::denies('task_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $task->status_id = $request->get('status_id');
+        $task->save();
+
+        return response()->json(['message' => 'Trạng thái công việc cập nhật thành công']);
     }
 }
