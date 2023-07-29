@@ -133,7 +133,7 @@ return [
             'id_helper'              => ' ',
             'income_category'        => 'Danh mục thu nhập',
             'income_category_helper' => ' ',
-            'entry_date'             => 'Entry Date',
+            'entry_date'             => 'Ngày thu',
             'entry_date_helper'      => ' ',
             'amount'                 => 'Số tiền',
             'amount_helper'          => ' ',
