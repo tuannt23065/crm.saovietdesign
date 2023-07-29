@@ -36,7 +36,7 @@
                             {{ trans('cruds.income.fields.amount') }}
                         </th>
                         <td>
-                            {{ $income->amount }}
+                            {{ number_format($income->amount, 0, ',', '.') }} ₫
                         </td>
                     </tr>
                     <tr>

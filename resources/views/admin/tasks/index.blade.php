@@ -145,6 +145,21 @@
   .modal-dialog {
       max-width: 1000px !important ;
   }
+
+  .status-new {
+    background-color: #7CFC00; /* Màu nền */
+    color: #000000; /* Màu chữ */
+  }
+
+  .status-in-progress {
+    background-color: #FFA500;
+    color: #000000;
+  }
+
+  .status-completed {
+    background-color: #FF0000;
+    color: #FFFFFF;
+  }
 </style>
 
 @section('scripts')

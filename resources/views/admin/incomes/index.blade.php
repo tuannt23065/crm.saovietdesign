@@ -101,7 +101,16 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'title', name: 'title' },
-{ data: 'amount', name: 'amount' },
+{ data: 'amount', name: 'amount', render: function(data, type, row) {
+        // Tạo đối tượng định dạng số tiền theo việt nam đồng
+        var formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        });
+
+        // Sử dụng đối tượng định dạng số tiền
+        return formatter.format(data); // "$1,000.00"
+    } },
 { data: 'income_category_name', name: 'income_category.name' },
 { data: 'entry_date', name: 'entry_date' },
 { data: 'description', name: 'description' },

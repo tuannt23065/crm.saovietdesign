@@ -104,7 +104,20 @@
 { data: 'description', name: 'description' },
 { data: 'expense_category_name', name: 'expense_category.name' },
 { data: 'entry_date', name: 'entry_date' },
-{ data: 'amount', name: 'amount' },
+{ 
+    data: 'amount', 
+    name: 'amount',
+    render: function(data, type, row) {
+        // Tạo đối tượng định dạng số tiền theo việt nam đồng
+        var formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        });
+
+        // Sử dụng đối tượng định dạng số tiền
+        return formatter.format(data); // "$1,000.00"
+    }
+},
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

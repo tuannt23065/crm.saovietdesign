@@ -19,7 +19,10 @@
             </div>
             <div class="form-group">
                 <label class="required" for="amount">{{ trans('cruds.income.fields.amount') }}</label>
-                <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" type="number" name="amount" id="amount" value="{{ old('amount', '') }}" step="0.01" required>
+                <!-- <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" type="number" name="amount" id="amount" value="{{ old('amount', '') }}" step="0.01" required> -->
+                <input class="form-control {{ $errors->has('amount') ? 'is-invalid' : '' }}" type="text" id="amount" value="{{ old('amount', '') }}" step="0.01" required>
+                <input type="hidden" name="amount" id="real_amount" value="{{ old('amount', '') }}">
+    
                 @if($errors->has('amount'))
                     <span class="text-danger">{{ $errors->first('amount') }}</span>
                 @endif
@@ -61,7 +64,35 @@
         </form>
     </div>
 </div>
-
-
-
 @endsection
+
+@section('scripts')
+@parent
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var amountInput = document.getElementById('amount');
+        var realAmountInput = document.getElementById('real_amount');
+
+        amountInput.addEventListener('input', function() {
+            var value = this.value.replace(/\./g, '');
+            if (isNaN(value) || value === '') {
+                realAmountInput.value = '';
+                this.value = '';
+            } else {
+                realAmountInput.value = value;
+                this.value = parseFloat(value).toLocaleString('vi-VN');
+            }
+        });
+
+        // Format initial value
+        var initialValue = amountInput.value;
+        if (initialValue) {
+            amountInput.value = parseFloat(initialValue).toLocaleString('vi-VN');
+            realAmountInput.value = initialValue;
+        }
+    });
+
+</script>
+@endsection
+
+

@@ -60,7 +60,7 @@
                             {{ trans('cruds.expense.fields.amount') }}
                         </th>
                         <td>
-                            {{ $expense->amount }}
+                            {{ number_format($expense->amount, 0, ',', '.') }} ₫
                         </td>
                     </tr>
                 </tbody>
